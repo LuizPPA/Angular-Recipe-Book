@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-12">
+    <hr>
+    <h2>Shopping List</h2>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-10">
+    <app-shop-list-edit></app-shop-list-edit>
+  </div>
+  <div class="col-xs-4">
+    <hr>
+    <ul class="list-group">
+      <a class="list-group-item pointer clearfix" style="cursor: pointer;" *ngFor='let ingredient of ingredients; let i = index' (click)="onEdit(i)">
+        <div class="pull-left">
+          <p class="list-gropu-item-header">{{ ingredient.name }}</p>
+        </div>
+        <div class="pull-right list-gropu-item-text">
+          <p class="list-gropu-item-header">{{ ingredient.amount }}</p>
+        </div>
+      </a>
+    </ul>
+  </div>
+</div>
