@@ -4,6 +4,7 @@ import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Observable'
 import { Recipe } from './recipe.model'
 import { Ingredient } from '../shared/ingredient.model'
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class RecipeBookService implements OnInit{
@@ -45,10 +46,20 @@ export class RecipeBookService implements OnInit{
   }
 
   updateList(){
-    this.http.get('https://udemy-angular-88cef.firebaseio.com/recipes.json').subscribe((response: Response) => {
-      this.recipes = response.json()
-      this.recipesChanged.next(this.getRecipes())
-    })
+    this.http.get('https://udemy-angular-88cef.firebaseio.com/recipes.json')
+      .map((response: Response) => {
+        let recipes: Recipe[] = response.json()
+        for (let recipe of recipes){
+          if(!recipe['ingredients']){
+            recipe['ingredients'] = []
+          }
+        }
+        return recipes
+      })
+      .subscribe((recipes: Recipe[]) => {
+        this.recipes = recipes
+        this.recipesChanged.next(this.getRecipes())
+      })
   }
 
   add(recipe: Recipe){
