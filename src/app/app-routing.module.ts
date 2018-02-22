@@ -8,9 +8,13 @@ import { NotFoundComponent } from './not-found/not-found.component'
 import { RecipeStartComponent } from './recipe-book/recipe-start/recipe-start.component'
 import { RecipeDetailComponent } from './recipe-book/recipe-detail/recipe-detail.component'
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component'
+import { SignInComponent } from './user-actions/sign-in/sign-in.component';
+import { SignUpComponent } from './user-actions/sign-up/sign-up.component'
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent, pathMatch: 'full'},
+    {path: 'login', component: SignInComponent},
+    {path: 'signup', component: SignUpComponent},
     {path: 'recipes', component: RecipeBookComponent, children: [
       {path: '', component: RecipeStartComponent, pathMatch: 'full'},
       {path: 'new', component: RecipeEditComponent},

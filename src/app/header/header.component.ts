@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core'
+import { Component } from '@angular/core'
+import { AuthService } from '../user-actions/auth.service'
 
 @Component({
   selector: "app-header",
@@ -6,5 +7,14 @@ import { Component, Output, EventEmitter } from '@angular/core'
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent {
-  @Output() changeSection: EventEmitter<number> = new EventEmitter<number>()
+
+  constructor(private auth: AuthService){}
+
+  logged(){
+    return this.auth.isLogged()
+  }
+
+  logout(){
+    this.auth.logout()
+  }
 }

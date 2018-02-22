@@ -12,8 +12,9 @@
         <li class="dropdown" dropdown>
           <a class="dropdown-toggle pointer">Options<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a class="pointer">Save</a></li>
-            <li><a class="pointer">Fetch</a></li>
+            <li><a class="pointer" routerLink="/login" *ngIf="!logged()">Login</a></li>
+            <li><a class="pointer" (click)="logout()" *ngIf="logged()">Logout</a></li>
+            <li><a class="pointer" routerLink="/signup">Sign Up</a></li>
           </ul>
         </li>
       </ul>

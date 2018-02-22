@@ -1,9 +1,12 @@
 import { Injectable, OnInit } from '@angular/core'
 import { Http, Response } from '@angular/http'
+import { Router } from '@angular/router'
 import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Observable'
 import { Recipe } from './recipe.model'
 import { Ingredient } from '../shared/ingredient.model'
+import { AuthService } from '../user-actions/auth.service'
+import { CookieService } from 'ngx-cookie-service'
 import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -26,7 +29,7 @@ export class RecipeBookService implements OnInit{
   //   )
   // ]
 
-  constructor(private http: Http){
+  constructor(private http: Http, private router: Router, private auth: AuthService, private cookies: CookieService){
     this.updateList()
   }
 
@@ -34,15 +37,12 @@ export class RecipeBookService implements OnInit{
   }
 
   addOnDatabase(recipe: Recipe){
-    this.http.post('https://udemy-angular-88cef.firebaseio.com/recipes.json', recipe).subscribe((response: Response) => {
-      console.log(response)
+    this.http.post('https://udemy-angular-88cef.firebaseio.com/recipes.json?auth='+this.cookies.get('token'), recipe).subscribe((response: Response) => {
     })
   }
 
   updateDatabase(){
-    this.http.put('https://udemy-angular-88cef.firebaseio.com/recipes.json', this.recipes).subscribe((response: Response) => {
-      console.log(response)
-    })
+    return this.http.put('https://udemy-angular-88cef.firebaseio.com/recipes.json?auth='+this.cookies.get('token'), this.recipes)
   }
 
   updateList(){
@@ -63,9 +63,15 @@ export class RecipeBookService implements OnInit{
   }
 
   add(recipe: Recipe){
-    this.recipes.push(recipe)
-    this.updateDatabase()
-    this.recipesChanged.next(this.getRecipes())
+    this.updateDatabase().subscribe((response: Response) => {
+      if(response.ok){
+        this.recipes.push(recipe)
+        this.recipesChanged.next(this.getRecipes())
+      }
+      else{
+        this.router.navigate(['/recipes'])
+      }
+    })
   }
 
   getRecipes(){
@@ -88,6 +94,7 @@ export class RecipeBookService implements OnInit{
 
   remove(i: number){
     this.recipes.splice(i, 1)
+    this.updateDatabase()
     this.recipesChanged.next(this.getRecipes())
   }
 }

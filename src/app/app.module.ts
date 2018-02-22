@@ -18,7 +18,11 @@ import { DropdownDirective } from './shared/dropdown.directive'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { HomeComponent } from './home/home.component'
 import { RecipeStartComponent } from './recipe-book/recipe-start/recipe-start.component'
-import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component'
+import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
+import { SignInComponent } from './user-actions/sign-in/sign-in.component';
+import { SignUpComponent } from './user-actions/sign-up/sign-up.component'
+import { AuthService } from './user-actions/auth.service'
+import { CookieService } from 'ngx-cookie-service'
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.compo
     NotFoundComponent,
     HomeComponent,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,7 @@ import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.compo
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [RecipeBookService, ShopListService],
+  providers: [RecipeBookService, ShopListService, AuthService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -33,5 +33,10 @@ export class RecipeDetailComponent implements OnInit{
     this.router.navigate(['edit'], {relativeTo: this.activatedRoute})
   }
 
+  onDelete(){
+    this.recipeBookService.remove(this.id)
+    this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+  }
+
 
 }
