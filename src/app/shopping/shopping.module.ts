@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms"
 import { HttpModule } from "@angular/http"
 
 import { SharedModule } from './../shared/shared.module'
-import { AppRoutingModule } from './../app-routing.module'
+import { ShoppingRoutingModule } from './shopping-routing.module'
 import { ShoppingComponent } from './shopping.component'
 import { ShopListEditComponent } from './shop-list-edit/shop-list-edit.component'
 
@@ -16,9 +16,11 @@ import { ShopListEditComponent } from './shop-list-edit/shop-list-edit.component
     HttpModule,
     FormsModule,
     SharedModule,
-    AppRoutingModule
+    ShoppingRoutingModule
   ],
-  exports: []
+  exports: [
+
+  ]
 })
 export class ShoppingModule{
 

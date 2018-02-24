@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Observable'
 import { Recipe } from './recipe.model'
 import { Ingredient } from '../shared/ingredient.model'
-import { AuthService } from '../user-actions/auth.service'
+import { AuthService } from '../auth/auth.service'
 import { CookieService } from 'ngx-cookie-service'
 import 'rxjs/add/operator/map'
 

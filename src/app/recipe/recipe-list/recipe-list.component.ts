@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription'
 
 import { Recipe } from '../recipe.model'
 import { RecipeService } from '../recipe.service'
-import { AuthService } from '../../user-actions/auth.service'
+import { AuthService } from '../../auth/auth.service'
 
 @Component({
   selector: 'app-recipe-list',
