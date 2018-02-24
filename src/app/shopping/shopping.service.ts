@@ -2,7 +2,7 @@ import { Subject } from 'rxjs/Subject'
 
 import { Ingredient } from './../shared/ingredient.model'
 
-export class ShopListService{
+export class ShoppingService{
   ingredientsChanged: Subject<null> = new Subject<null>()
   editIngredient: Subject<number> = new Subject<number>()
   ingredients: Ingredient[] = []

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs/Subscription'
 
 import { Recipe } from '../recipe.model'
-import { RecipeBookService } from '../recipe-book.service'
+import { RecipeService } from '../recipe.service'
 import { AuthService } from '../../user-actions/auth.service'
 
 @Component({
@@ -15,7 +15,7 @@ export class RecipeListComponent implements OnInit, OnDestroy{
   subscriptions: Subscription[] = []
   recipes: Recipe[]
 
-  constructor(private recipeBookService: RecipeBookService,
+  constructor(private recipeBookService: RecipeService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private auth: AuthService){}

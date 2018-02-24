@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service'
 import 'rxjs/add/operator/map'
 
 @Injectable()
-export class RecipeBookService implements OnInit{
+export class RecipeService implements OnInit{
   recipesChanged: Subject<Recipe[]> = new Subject<Recipe[]>()
   detail: Recipe
   recipes: Recipe[]
@@ -63,9 +63,9 @@ export class RecipeBookService implements OnInit{
   }
 
   add(recipe: Recipe){
+    this.recipes.push(recipe)
     this.updateDatabase().subscribe((response: Response) => {
       if(response.ok){
-        this.recipes.push(recipe)
         this.recipesChanged.next(this.getRecipes())
       }
       else{
@@ -88,13 +88,25 @@ export class RecipeBookService implements OnInit{
 
   update(i: number, recipe: Recipe){
     this.recipes[i] = recipe
-    this.updateDatabase()
-    this.recipesChanged.next(this.getRecipes())
+    this.updateDatabase().subscribe((response: Response) => {
+      if(response.ok){
+        this.recipesChanged.next(this.getRecipes())
+      }
+      else{
+        this.router.navigate(['/recipes'])
+      }
+    })
   }
 
   remove(i: number){
     this.recipes.splice(i, 1)
-    this.updateDatabase()
-    this.recipesChanged.next(this.getRecipes())
+    this.updateDatabase().subscribe((response: Response) => {
+      if(response.ok){
+        this.recipesChanged.next(this.getRecipes())
+      }
+      else{
+        this.router.navigate(['/recipes'])
+      }
+    })
   }
 }

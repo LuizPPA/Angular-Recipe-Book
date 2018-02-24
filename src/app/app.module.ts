@@ -1,55 +1,42 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { HttpModule } from "@angular/http"
+import { ReactiveFormsModule } from '@angular/forms'
 
+import { SharedModule } from './shared/shared.module'
+import { RecipeModule } from './recipe/recipe.module'
+import { ShoppingModule } from './shopping/shopping.module'
 import { AppRoutingModule } from './app-routing.module'
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component'
-import { RecipeBookComponent } from './recipe-book/recipe-book.component'
-import { RecipeBookService } from './recipe-book/recipe-book.service'
-import { RecipeItemComponent } from './recipe-book/recipe-item/recipe-item.component'
-import { RecipeDetailComponent } from './recipe-book/recipe-detail/recipe-detail.component'
-import { RecipeListComponent } from './recipe-book/recipe-list/recipe-list.component'
-import { ShopListComponent } from './shop-list/shop-list.component'
-import { ShopListService } from './shop-list/shop-list.service'
-import { ShopListEditComponent} from './shop-list/shop-list-edit/shop-list-edit.component'
-import { DropdownDirective } from './shared/dropdown.directive'
-import { NotFoundComponent } from './not-found/not-found.component'
-import { HomeComponent } from './home/home.component'
-import { RecipeStartComponent } from './recipe-book/recipe-start/recipe-start.component'
-import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
-import { SignInComponent } from './user-actions/sign-in/sign-in.component';
-import { SignUpComponent } from './user-actions/sign-up/sign-up.component'
+import { RecipeService } from './recipe/recipe.service'
+import { ShoppingService } from './shopping/shopping.service'
 import { AuthService } from './user-actions/auth.service'
 import { CookieService } from 'ngx-cookie-service'
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component'
+import { NotFoundComponent } from './not-found/not-found.component'
+import { HomeComponent } from './home/home.component'
+import { SignInComponent } from './user-actions/sign-in/sign-in.component';
+import { SignUpComponent } from './user-actions/sign-up/sign-up.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipeBookComponent,
-    ShopListComponent,
-    RecipeItemComponent,
-    RecipeDetailComponent,
-    RecipeListComponent,
-    ShopListEditComponent,
-    DropdownDirective,
     NotFoundComponent,
     HomeComponent,
-    RecipeStartComponent,
-    RecipeEditComponent,
     SignInComponent,
     SignUpComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    SharedModule,
+    RecipeModule,
+    ShoppingModule
   ],
-  providers: [RecipeBookService, ShopListService, AuthService, CookieService],
+  providers: [RecipeService, ShoppingService, AuthService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

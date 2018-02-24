@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core'
 import { Subscription } from 'rxjs/Subscription'
 import { NgForm } from '@angular/forms'
 
-import { ShopListService } from '../shop-list.service'
+import { ShoppingService } from '../shopping.service'
 import { Ingredient } from '../../shared/ingredient.model'
 
 @Component({
@@ -17,7 +17,7 @@ export class ShopListEditComponent{
   editingIngredient: Ingredient = null
   editingIngredientId: number = null
 
-  constructor(private shopListService: ShopListService){}
+  constructor(private shopListService: ShoppingService){}
 
   ngOnInit(){
     this.subscriptions.push(this.shopListService.editIngredient.subscribe((id: number) => {

@@ -4,7 +4,7 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms'
 
 import { Recipe } from '../recipe.model'
 import { Ingredient } from '../../shared/ingredient.model'
-import { RecipeBookService } from '../recipe-book.service'
+import { RecipeService } from '../recipe.service'
 import { AppValidators } from '../../shared/validators'
 
 @Component({
@@ -23,7 +23,7 @@ export class RecipeEditComponent implements OnInit {
     ingredients: new FormArray([])
   })
 
-  constructor(private recipeBookService: RecipeBookService, private activatedRoute: ActivatedRoute, private router: Router){}
+  constructor(private recipeBookService: RecipeService, private activatedRoute: ActivatedRoute, private router: Router){}
 
   ngOnInit(){
     this.activatedRoute.params.subscribe((params) => {

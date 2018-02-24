@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Recipe } from '../recipe.model'
-import { RecipeBookService } from '../recipe-book.service'
-import { ShopListService } from '../../shop-list/shop-list.service'
+import { RecipeService } from '../recipe.service'
+import { ShoppingService } from '../../shopping/shopping.service'
 import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
@@ -13,8 +13,8 @@ export class RecipeDetailComponent implements OnInit{
   recipe: Recipe
   id: number
 
-  constructor(private recipeBookService: RecipeBookService,
-              private shopListService: ShopListService,
+  constructor(private recipeBookService: RecipeService,
+              private shopListService: ShoppingService,
               private activatedRoute: ActivatedRoute,
               private router: Router){}
 

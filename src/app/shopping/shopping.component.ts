@@ -1,18 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Subscription } from 'rxjs/Subscription'
 import { Ingredient } from './../shared/ingredient.model'
-import { ShopListService } from './shop-list.service'
+import { ShoppingService } from './shopping.service'
 
 @Component({
-  selector: 'app-shop-list',
-  templateUrl: './shop-list.component.html',
-  styleUrls: ['./shop-list.component.css']
+  selector: 'app-shopping',
+  templateUrl: './shopping.component.html',
+  styleUrls: ['./shopping.component.css']
 })
-export class ShopListComponent implements OnInit, OnDestroy{
+export class ShoppingComponent implements OnInit, OnDestroy{
   ingredients: Ingredient[] = []
   subscriptions: Subscription[] = []
 
-  constructor(private shopListService: ShopListService){}
+  constructor(private shopListService: ShoppingService){}
 
   ngOnInit(){
     this.ingredients = this.shopListService.getIngredients()
