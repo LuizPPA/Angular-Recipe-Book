@@ -4,8 +4,8 @@ import { HttpModule } from "@angular/http"
 import { ReactiveFormsModule } from '@angular/forms'
 
 import { SharedModule } from './shared/shared.module'
-import { RecipeModule } from './recipe/recipe.module'
-import { ShoppingModule } from './shopping/shopping.module'
+// import { RecipeModule } from './recipe/recipe.module'
+// import { ShoppingModule } from './shopping/shopping.module'
 import { AuthModule } from './auth/auth.module'
 import { AppRoutingModule } from './app-routing.module'
 import { RecipeService } from './recipe/recipe.service'
@@ -30,8 +30,6 @@ import { HomeComponent } from './home/home.component'
     ReactiveFormsModule,
     AppRoutingModule,
     SharedModule,
-    RecipeModule,
-    ShoppingModule,
     AuthModule
   ],
   providers: [RecipeService, ShoppingService, AuthService, CookieService],
