@@ -1,6 +1,7 @@
 # RecipeBook
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.6.
+The hosted website can be found [here](http://luiz-angular-recipe-book.s3-website-sa-east-1.amazonaws.com).
 
 ## Development server
 
