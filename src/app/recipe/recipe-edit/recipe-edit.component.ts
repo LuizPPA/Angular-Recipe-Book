@@ -16,16 +16,17 @@ export class RecipeEditComponent implements OnInit {
   recipe: Recipe
   id: number
   editMode: boolean = false
-  form: FormGroup = new FormGroup({
-    name: new FormControl(null, [Validators.required]),
-    description: new FormControl(null, [Validators.required]),
-    image: new FormControl(null, [Validators.required, AppValidators.image]),
-    ingredients: new FormArray([])
-  })
+  form: FormGroup
 
   constructor(private recipeBookService: RecipeService, private activatedRoute: ActivatedRoute, private router: Router){}
 
   ngOnInit(){
+    this.form = new FormGroup({
+      name: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required]),
+      image: new FormControl(null, [Validators.required, AppValidators.image]),
+      ingredients: new FormArray([])
+    })
     this.activatedRoute.params.subscribe((params) => {
       if(params['id'] != null){
         this.id = +params['id']
@@ -53,6 +54,10 @@ export class RecipeEditComponent implements OnInit {
         })
       }
     })
+  }
+
+  getIngredientsControls(){
+    return (<FormArray>this.form.get('ingredients')).controls
   }
 
   addIngredient(){
